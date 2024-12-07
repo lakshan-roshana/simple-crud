@@ -1,1 +1,7 @@
-<p>item-list works!</p>
+<h2>Items</h2>
+<ul>
+    <li *ngFor="let item of items">
+        {{ item.name }}: {{ item.description }}
+        <button (click)="deleteItem(item.id)">Delete</button>
+    </li>
+</ul>
