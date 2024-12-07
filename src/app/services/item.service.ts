@@ -1,18 +1,29 @@
-import axios from 'axios';
 import { Injectable } from '@angular/core';
-import { Item } from '../models/item.model';
+import { HttpClient } from '@angular/common/http';
+import { Item } from '../models/item.model';  // Correct import path
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class ItemService {
-    private apiUrl = 'http://localhost:5000/api/item';
+  private apiUrl = 'http://localhost:5227/api/items';  // Your API endpoint
 
-    getAllItems() { return axios.get(this.apiUrl); }
+  constructor(private http: HttpClient) {}
 
-    createItem(item: Item) { return axios.post(this.apiUrl, item); }
+  getItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(this.apiUrl);
+  }
 
-    updateItem(id: string, item: Item) { return axios.put(`${this.apiUrl}/${id}`, item); }
-    
-    deleteItem(id: string) { return axios.delete(`${this.apiUrl}/${id}`); }
+  createItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.apiUrl, item);
+  }
+
+  updateItem(id: string, item: Item): Observable<Item> {
+    return this.http.put<Item>(`${this.apiUrl}/${id}`, item);
+  }
+
+  deleteItem(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

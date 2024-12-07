@@ -1,1 +1,6 @@
-<p>item-form works!</p>
+<h2>Add Item</h2>
+<form (submit)="addItem()">
+    <input [(ngModel)]="item.name" placeholder="Name" required />
+    <input [(ngModel)]="item.description" placeholder="Description" required />
+    <button type="submit">Add</button>
+</form>
