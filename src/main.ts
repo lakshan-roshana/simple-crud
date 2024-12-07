@@ -1,14 +1,9 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';  // Import HttpClientModule for HTTP requests
-import { ItemFormComponent } from './app/components/item-form/item-form.component';
-import { ItemListComponent } from './app/components/item-list/item-list.component';
-import { BrowserModule } from '@angular/platform-browser'; // Import BrowserModule
+import { provideHttpClient } from '@angular/common/http'; // Correct way to provide HttpClient
+import { ItemFormComponent } from './app/components/item-form/item-form.component'; // Update to your root component
 
-// Bootstrap the main component directly
 bootstrapApplication(ItemFormComponent, {
-  imports: [
-    BrowserModule,         // Provide BrowserModule
-    HttpClientModule,      // Provide HttpClientModule
-    ItemListComponent,     // Add other components you want to use
-  ]
+  providers: [
+    provideHttpClient(), // Provide HttpClient here
+  ],
 }).catch(err => console.error(err));

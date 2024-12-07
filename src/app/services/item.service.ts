@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Item } from '../models/item.model';  // Correct import path
 import { Observable } from 'rxjs';
+import { Item } from '../models/item.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // Makes the service available application-wide
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:5227/api/items';  // Your API endpoint
+  private apiUrl = 'http://localhost:5227/api/items'; // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
